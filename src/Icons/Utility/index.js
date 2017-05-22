@@ -33,6 +33,7 @@ import {
 
 const BaseIconNative = require('../BaseIconNative');
 
+import BaseIcon from '../BaseIcon';
 
 const iconCodes = require('./iconCodes');
 
@@ -73,7 +74,8 @@ module.exports = React.createClass({
       return <View {... this.props} style={{
                 backgroundColor:'transparent',
                 borderRadius:Math.floor(this.props.size/10)
-              }}><BaseIconNative
+              }}><BaseIcon
+                  size={this.props.size || 50}
                   style={[{width:50,height:50},this.props.style]}
                   iconCode={getCodeByName(this.props.name)}
                   iconColor={this.props.iconColor}
