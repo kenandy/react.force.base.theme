@@ -23,7 +23,7 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
- 
+
 'use strict';
 
 import React from 'react';
@@ -43,11 +43,17 @@ module.exports = React.createClass({
   setNativeProps(nativeProps) {
     this._root.setNativeProps(nativeProps);
   },
-  getIcon(){
-    if(this.props.image){
-      return this.props.image
+  getIconLeft(){
+    if(this.props.imageLeft){
+      return this.props.imageLeft
     }
-    return <Icons.Standard style={styles['View slds-icon icon-doctype-zip']} name={this.props.icon} />
+    return <Icons.Standard style={styles['View slds-icon icon-doctype-zip']} name={this.props.iconLeft} />
+  },
+  getIconRight(){
+    if(this.props.imageRight){
+      return this.props.imageRight
+    }
+    return <Icons.Standard style={styles['View slds-icon icon-doctype-zip']} name={this.props.iconRight} />
   },
   render() {
     return (
@@ -56,12 +62,14 @@ module.exports = React.createClass({
             flex: 1,
             flexDirection:'row'}]}>
 
-          <View style={styles['View slds-media__figure']}>
-{/*
-            <Icons.Standard style={styles['View slds-icon icon-doctype-zip']} name={this.props.icon} />
-*/}
-            { this.getIcon() }
-          </View>
+          {
+            this.props.iconLeft  || this.props.imageLeft?
+              <View style={styles['View slds-media__figure']}>
+                { this.getIconLeft() }
+              </View>
+              :
+              <View></View>
+          }
 
           <View style={styles['View slds-media__body']}>
             <View style={styles['View slds-tile__title slds-truncate']}>
@@ -76,6 +84,16 @@ module.exports = React.createClass({
               </Text>
             </View>
           </View>
+
+          {
+            (this.props.iconRight || this.props.imageRight)
+              ?
+              <View style={styles['View slds-media__figure']}>
+                { this.getIconRight() }
+              </View>
+              :
+              <View></View>
+          }
         </View>
       </View>
     );
